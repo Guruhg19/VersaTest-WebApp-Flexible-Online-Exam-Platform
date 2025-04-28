@@ -201,7 +201,7 @@
                                             menu
                                             <img src="{{asset('assets/images/icons/arrow-down.svg')}}" alt="icon">
                                         </button>
-                                        <a href="#" class="flex items-center justify-between w-full text-sm font-bold">
+                                        <a href="{{ route('dashboard.courses.show', $course) }}" class="flex items-center justify-between w-full text-sm font-bold">
                                             Manage
                                         </a>
                                         <a href="course-students.html" class="flex items-center justify-between w-full text-sm font-bold">
@@ -210,10 +210,10 @@
                                         <a href="{{ route('dashboard.courses.edit', $course) }}" class="flex items-center justify-between w-full text-sm font-bold">
                                             Edit Course
                                         </a>
-                                        <form action="{{ route('dashboard.courses.destroy', $course) }}" method="POST" >
+                                        <form action="{{ route('dashboard.courses.destroy', $course) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="flex items-center justify-between font-bold text-sm w-full text-[#FD445E]">
+                                            <button type="submit" class="flex items-center justify-between font-bold text-sm w-full text-[#FD445E]" >
                                                 Delete
                                             </button>
                                         </form>

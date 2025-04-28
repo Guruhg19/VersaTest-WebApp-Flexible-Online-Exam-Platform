@@ -64,7 +64,9 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        $students = $course->students()->orderBy('id', 'desc')->get();
+        // dd($course);
+        return view('admin.courses.manage', compact('course', 'students'));
     }
 
     /**
