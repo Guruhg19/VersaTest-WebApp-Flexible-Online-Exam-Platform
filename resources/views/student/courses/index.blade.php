@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/output.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     </head>
     <body class="font-poppins text-[#0A090B]">
@@ -191,9 +193,10 @@
                                         Start Test
                                     </a>
                                 @else
-                                    <span class="w-full h-[41px] p-[10px_20px] bg-[#6436F1] rounded-full font-bold text-sm text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D] text-center">
-                                        Unavailable
-                                    </span>
+                                    <a href=""
+                                    class="w-full h-[41px] p-[10px_20px] bg-[#50df3d] rounded-full font-bold text-sm text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D] text-center">
+                                        Result
+                                    </a>
                                 @endif
                             </div>
                         </div>

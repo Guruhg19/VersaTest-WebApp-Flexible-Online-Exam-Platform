@@ -58,7 +58,13 @@ class LearningController extends Controller
             'course' => $course,
             'question' => $current_question,
         ]);
+    }
 
+    public function learning_finished(Course $course)
+    {
+        return view('student.courses.learning_finished', [
+            'course' => $course,
+        ]);
     }
 
 }

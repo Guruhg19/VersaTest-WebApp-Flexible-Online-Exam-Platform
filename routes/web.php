@@ -50,6 +50,10 @@ Route::middleware('auth')->group(function () {
         ->middleware('role:student')
         ->name('learning.index');
 
+        Route::get('/learning/finished/{course}', [LearningController::class, 'learning_finished'])
+        ->middleware('role:student')
+        ->name('learning.finished.course');
+
         Route::get('/learning/{course}/{question}', [LearningController::class, 'learning'])
         ->middleware('role:student')
         ->name('learning.course');
@@ -57,10 +61,6 @@ Route::middleware('auth')->group(function () {
         Route::post('/learning/{course}/{question}', [StudentAnswerController::class, 'store'])
         ->middleware('role:student')
         ->name('learning.course.answer.store');
-
-        Route::get('/learning/finished/{course}', [LearningController::class, 'learning_finished'])
-        ->middleware('role:student')
-        ->name('learning.finished.course');
 
         Route::get('/learning/rapport/{course}', [LearningController::class, 'learning_rapport'])
         ->middleware('role:student')

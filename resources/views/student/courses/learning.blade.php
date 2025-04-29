@@ -38,7 +38,7 @@
                 <div class="flex flex-col gap-[30px] max-w-[750px] w-full">
 
                     @foreach ($question->answers as $answer)
-                        <label for="a" class="group flex items-center justify-between rounded-full w-full border border-[#EEEEEE] p-[18px_20px] gap-[14px] transition-all duration-300 has-[:checked]:border-2 has-[:checked]:border-[#0A090B]">
+                        <label for="{{ $answer->id }}" class="group flex items-center justify-between rounded-full w-full border border-[#EEEEEE] p-[18px_20px] gap-[14px] transition-all duration-300 has-[:checked]:border-2 has-[:checked]:border-[#0A090B]">
                             <div class="flex items-center gap-[14px]">
                                 <img src="{{asset('assets/images/icons/arrow-circle-right.svg')}}" alt="icon">
                                 <span class="font-semibold text-xl leading-[30px]">{{ $answer->answer }}</span>
