@@ -185,7 +185,7 @@
                             </div>
                             @endif
                             <div class="flex shrink-0 w-[120px] items-center">
-                                <a href="learning.html" class="w-full h-[41px] p-[10px_20px] bg-[#6436F1] rounded-full font-bold text-sm text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D] text-center">Start Test</a>
+                                <a href="{{ route('dashboard.learning.course', ['course' => $course->id, 'course' => $nextQuestionId]) }}" class="w-full h-[41px] p-[10px_20px] bg-[#6436F1] rounded-full font-bold text-sm text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D] text-center">Start Test</a>
                             </div>
                         </div>
                     @empty
