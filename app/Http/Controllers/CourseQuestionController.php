@@ -82,7 +82,14 @@ class CourseQuestionController extends Controller
      */
     public function edit(CourseQuestion $courseQuestion)
     {
-        //
+        $course = $courseQuestion->course;
+        $students = $course->students()->orderBy('id', 'desc')->get();
+
+        return view('admin.questions.edit', [
+            'course' => $course,
+            'courseQuestion' => $courseQuestion,
+            'students' => $students,
+        ]);
     }
 
     /**
@@ -90,7 +97,40 @@ class CourseQuestionController extends Controller
      */
     public function update(Request $request, CourseQuestion $courseQuestion)
     {
-        //
+        $validated = $request->validate([
+            'question' => 'required|string|max:255',
+            'answers' => 'required|array',
+            'answers.*' => 'required|string',
+            'is_correct' => 'required|integer',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+            $courseQuestion->update([
+                'question' => $request->question,
+            ]);
+
+            $courseQuestion->answers()->delete();
+
+            foreach ($request->answers as $index => $answerText) {
+                $isCorrect = ($request->is_correct == $index);
+                $courseQuestion->answers()->create([
+                    'answer' => $answerText,
+                    'is_correct' => $isCorrect,
+                ]);
+            }
+
+            DB::commit();
+            return redirect()->route('dashboard.courses.show', $courseQuestion->course_id)
+                ->with('success', 'Question created successfully');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $error = ValidationException::withMessages([
+                'system_error' => 'System Error ' . $e->getMessage(),
+            ]);
+            throw $error;
+        }
     }
 
     /**

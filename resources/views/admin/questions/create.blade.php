@@ -183,7 +183,7 @@
                     </ul>
                     
                 @endif
-                <form method="POST" action="{{ route('dashboard.course.store.question', $course) }}"  id="add-question" class="mx-[70px] mt-[30px] flex flex-col gap-5">
+                <form method="POST" action="{{ route('dashboard.course.create.question.store', $course) }}"  id="add-question" class="mx-[70px] mt-[30px] flex flex-col gap-5">
                     @csrf
                     <h2 class="text-2xl font-bold">Add New Question</h2>
                     <div class="flex flex-col gap-[10px]">

@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
         ->name('course.create.question');
 
         Route::post('/course/question/save/{course}',[CourseQuestionController::class, 'store'])->middleware('role:teacher')
-        ->name('course.store.question');
+        ->name('course.create.question.store');
 
         Route::resource('course_questions', CourseQuestionController::class)
         ->middleware('role:teacher');
