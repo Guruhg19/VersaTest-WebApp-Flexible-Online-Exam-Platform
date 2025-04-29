@@ -138,7 +138,7 @@
                         <div class="flex items-center gap-3">
                             <div class="flex flex-col text-right">
                                 <p class="text-sm text-[#7F8190]">Howdy</p>
-                                <p class="font-semibold">Fany Alqo</p>
+                                <p class="font-semibold">{{ Auth::user()->name }}</p>
                             </div>
                             <div class="w-[46px] h-[46px]">
                                 <img src="{{asset('assets/images/photos/default-photo.svg')}}" alt="photo">

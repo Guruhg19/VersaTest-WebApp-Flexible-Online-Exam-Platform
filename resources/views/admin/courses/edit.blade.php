@@ -91,12 +91,15 @@
                             </a>
                         </li>
                         <li>
-                            <a href="signin.html" class="p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#2B82FE]">
+                            <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full p-[10px_16px] flex items-center gap-[14px] rounded-full h-11 transition-all duration-300 hover:bg-[#2B82FE]">
                                 <div>
                                     <img src="{{asset('assets/images/icons/security-safe.svg')}}" alt="icon">
                                 </div>
                                 <p class="font-semibold transition-all duration-300 hover:text-white">Logout</p>
-                            </a>
+                            </button>
+                            </form>
                         </li>
                     </ul>
                 </div>
@@ -133,7 +136,7 @@
                         <div class="flex items-center gap-3">
                             <div class="flex flex-col text-right">
                                 <p class="text-sm text-[#7F8190]">Howdy</p>
-                                <p class="font-semibold">Fany Alqo</p>
+                                <p class="font-semibold">{{ Auth::user()->name }}</p>
                             </div>
                             <div class="w-[46px] h-[46px]">
                                 <img src="{{asset('assets/images/photos/default-photo.svg')}}" alt="photo">
