@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Course;
-use App\Models\CourseStudent;
 use Illuminate\Http\Request;
+use App\Models\CourseStudent;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class CourseStudentController extends Controller
 {
@@ -30,9 +33,42 @@ class CourseStudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Course $course)
     {
-        //
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if(!$user){
+            $error = ValidationException::withMessages([
+                'system_error' => 'Email student tidak tersedia',
+            ]);
+            throw $error;
+        }
+
+        $isEnrolled = $course->students()->where('user_id', $user->id)->exists();
+        if($isEnrolled){
+            $error = ValidationException::withMessages([
+                'system_error' => 'Email student sudah terdaftar',
+            ]);
+            throw $error;
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $course->students()->attach($user->id);
+            DB::commit();
+            return redirect()->route('dashboard.course.course_students.index', $course);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $error = ValidationException::withMessages([
+                'system_error' => 'System Error ' . $e->getMessage(),
+            ]);
+            throw $error;
+        }
     }
 
     /**
