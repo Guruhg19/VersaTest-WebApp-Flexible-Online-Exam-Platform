@@ -193,7 +193,7 @@
                                         Start Test
                                     </a>
                                 @else
-                                    <a href=""
+                                    <a href="{{ route('dashboard.learning.rapport.course', $my_course) }}"
                                     class="w-full h-[41px] p-[10px_20px] bg-[#50df3d] rounded-full font-bold text-sm text-white transition-all duration-300 hover:shadow-[0_4px_15px_0_#6436F14D] text-center">
                                         Result
                                     </a>
