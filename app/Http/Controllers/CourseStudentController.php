@@ -20,7 +20,7 @@ class CourseStudentController extends Controller
     public function index(Course $course)
     {
         $students = $course->students()->orderBy('id', 'desc')->get();
-        $questions = $course->questions->orderBy('id', 'desc')->get();
+        $questions = $course->questions()->orderBy('id', 'desc')->get();
         $totalQuestions = $questions->count();
 
         foreach($students as $student){

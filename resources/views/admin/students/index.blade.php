@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/output.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     </head>
     <body class="font-poppins text-[#0A090B]">
@@ -194,11 +196,15 @@
                                         <p class="text-[#7F8190]">{{ $student->email }}</p>
                                     </div>
                                 </div>
-                                @if ($passed)
+                                @if ($student->status == 'Passed')
                                     <div class="flex items-center gap-[14px]">
                                         <p class="p-[6px_10px] rounded-[10px] bg-[#06BC65] font-bold text-xs text-white outline-[#06BC65] outline-dashed outline-[2px] outline-offset-[4px] mr-[6px]">Passed</p>
                                     </div>
-                                @else
+                                @elseif($student->status == 'Not Started')
+                                    <div class="flex items-center gap-[14px]">
+                                        <p class="p-[6px_10px] rounded-[10px] bg-[#e3d94b] font-bold text-xs text-white outline-[#e3d94b] outline-dashed outline-[2px] outline-offset-[4px] mr-[6px]">Not Started</p>
+                                    </div>
+                                @elseif($student->status == 'Not Passed')
                                     <div class="flex items-center gap-[14px]">
                                         <p class="p-[6px_10px] rounded-[10px] bg-[#FD445E] font-bold text-xs text-white outline-[#FD445E] outline-dashed outline-[2px] outline-offset-[4px] mr-[6px]">Not Passed</p>
                                     </div>
